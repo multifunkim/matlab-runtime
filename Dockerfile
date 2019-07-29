@@ -4,7 +4,10 @@ LABEL maintainer="aliobaibk"
 LABEL version="1.0"
 
 
+
+# Environment
 ENV MCR_ROOT=/usr/local/MATLAB/MATLAB_Runtime
+
 
 
 # Setup
@@ -13,6 +16,7 @@ RUN apt-get -y update && \
     apt-get -y autoremove && \
     apt-get -y clean && \
     rm -rf /var/*/apt/*/partial /var/lib/apt/lists/* /var/log/apt/term*
+
 
 
 # Download and install MCR
@@ -24,8 +28,9 @@ RUN mkdir /tmp/MCR-installer && \
     rm -rf /tmp/*
 
 
+
 # Environment config
-ENV LD_LIBRARY_PATH=""$LD_LIBRARY_PATH":"$MCR_ROOT"/v95/runtime/glnxa64:"$MCR_ROOT"/v95/bin/glnxa64:"$MCR_ROOT"/v95/sys/os/glnxa64:"$MCR_ROOT"/v95/sys/opengl/lib/glnxa64:"$MCR_ROOT"/v95/extern/bin/glnxa64" \
+ENV LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$MCR_ROOT/v95/runtime/glnxa64:$MCR_ROOT/v95/bin/glnxa64:$MCR_ROOT/v95/sys/os/glnxa64:$MCR_ROOT/v95/sys/opengl/lib/glnxa64:$MCR_ROOT/v95/extern/bin/glnxa64" \
     XAPPLRESDIR="$MCR_ROOT"/v95/X11/app-defaults \
-    ENV MCR_CACHE_ROOT=/tmp \
-    ENV MCR_CACHE_VERBOSE=true
+    MCR_CACHE_ROOT=/tmp \
+    MCR_CACHE_VERBOSE=true
