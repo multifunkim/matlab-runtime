@@ -1,7 +1,7 @@
 FROM ubuntu:18.04
 
 LABEL maintainer="aliobaibk" \
-      version="1.2" \
+      version="1.0" \
       description="MATLAB Runtime R2019b (9.7)"
 
 
